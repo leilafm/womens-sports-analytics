@@ -1,0 +1,77 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model League {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+
+  teams     Team[]
+  matchups  Matchup[]
+}
+
+model Team {
+  id       Int    @id @default(autoincrement())
+  name     String
+  city     String?
+
+  leagueId Int
+  league   League @relation(fields: [leagueId], references: [id])
+
+  players Player[]
+
+  homeMatchups Matchup[] @relation("HomeMatchups")
+  awayMatchups Matchup[] @relation("AwayMatchups")
+
+  favoriteTeams FavoriteTeam[]
+}
+
+model Player {
+  id       Int    @id @default(autoincrement())
+  name     String
+
+  teamId   Int
+  team     Team   @relation(fields: [teamId], references: [id])
+}
+
+model Matchup {
+  id Int @id @default(autoincrement())
+
+  leagueId Int
+  league   League @relation(fields: [leagueId], references: [id])
+
+  homeTeamId Int
+  homeTeam   Team @relation("HomeMatchups", fields: [homeTeamId], references: [id])
+
+  awayTeamId Int
+  awayTeam   Team @relation("AwayMatchups", fields: [awayTeamId], references: [id])
+
+  gameDate DateTime
+  homeScore Int?
+  awayScore Int?
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  passwordHash String
+  name         String?
+
+  favoriteTeams FavoriteTeam[]
+}
+
+model FavoriteTeam {
+  id Int @id @default(autoincrement())
+
+  userId Int
+  user   User @relation(fields: [userId], references: [id])
+
+  teamId Int
+  team   Team @relation(fields: [teamId], references: [id])
+
+  @@unique([userId, teamId])
+}
