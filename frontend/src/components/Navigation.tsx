@@ -3,14 +3,16 @@ import { Link } from "react-router-dom";
 
 function Navigation() {
     return (
-        <nav>
-            <h1>WSports Hub</h1>
+        <nav className="navbar">
+            <div className="nav-content">
+                <h1>WSports Hub</h1>
 
-            <div>
-                <Link to="/wnba">WNBA</Link>
-                <Link to="/ncaaw">NCAAW BB</Link>
-                <Link to="/nwsl">NWSL</Link>
-                <Link to="/wsl">WSL</Link>
+                <div className="nav-links">
+                    <Link to="/wnba">WNBA</Link>
+                    <Link to="/ncaaw">NCAAW BB</Link>
+                    <Link to="/nwsl">NWSL</Link>
+                    <Link to="/wsl">WSL</Link>
+                </div>
             </div>
         </nav>
     );

@@ -21,15 +21,17 @@ function LeaguePage() {
     return (
         <div> 
             <h2> WNBA </h2>
-            <div>
+            <div className="team-grid">
                 {teams.map((team) => (
-                    <p key={team.id}>
-                        <a href={`/teams/${team.id}`}>
-                            {team.city} {team.name}
-                        </a>
-                    </p>
+                    <a
+                        href={`/teams/${team.id}`}
+                        className="team-card"
+                        key={team.id}
+                    >
+                        <h3>{team.city} {team.name}</h3>
+                    </a>
                 ))}
-            </div> 
+            </div>
         </div>
     );
 }

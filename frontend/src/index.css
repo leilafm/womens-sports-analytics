@@ -1,98 +1,140 @@
-:root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
-
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-}
-
-#root {
-    min-height: 100svh;
+* {
     box-sizing: border-box;
 }
 
 body {
-  margin: 0;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #0b0710;
+    color: #f5f3ff;
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
+/* Navigation */
+
+.navbar {
+    background-color: #120b1a;
+    border-bottom: 2px solid #7c3aed;
 }
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
+
+.nav-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-content h1 {
+    margin: 0;
+    font-size: 26px;
+    color: #c084fc;
+}
+
+.nav-links {
+    display: flex;
+    gap: 24px;
+}
+
+.nav-links a {
+    font-weight: 600;
+    color: #d8b4fe;
+}
+
+.nav-links a:hover {
+    color: #ffffff;
+}
+
+/* General page */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 24px;
+}
+
+/* Team page */
+
+.page-header {
+    margin-bottom: 32px;
+}
+
+.page-header h1 {
+    margin: 0;
+    font-size: 40px;
+    color: #ffffff;
+}
+
+/* Roster */
+
+section h2 {
+    font-size: 26px;
+    color: #c084fc;
+    margin-bottom: 20px;
+}
+
+.roster-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 200px;
+}
+
+.player-card {
+    background-color: #171020;
+    border: 1px solid #3b1d5c;
+    border-radius: 10px;
+    padding: 12px 18px;
+    transition: 0.2s;
+}
+
+.player-card:hover {
+    border-color: #a855f7;
+    background-color: #21142d;
+    transform: translateX(4px);
+}
+
+.player-card h3 {
+    margin: 0;
+    font-size: 16px;
+    color: #f3e8ff;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.team-card {
+    background-color: #171020;
+    border: 1px solid #3b1d5c;
+    border-radius: 14px;
+    padding: 28px;
+    min-height: 120px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: 0.2s;
+}
+
+.team-card h3 {
+    margin: 0;
+    text-align: center;
     font-size: 20px;
-  }
-}
-p {
-  margin: 0;
+    color: #f3e8ff;
 }
 
-code,
-code {
-    font-family: var(--mono);
-    display: inline-flex;
-    border-radius: 4px;
-    color: var(--text-h);
-    font-size: 15px;
-    line-height: 135%;
-    padding: 4px 8px;
-    background: var(--code-bg);
+.team-card:hover {
+    border-color: #a855f7;
+    background-color: #21142d;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(124, 58, 237, 0.2);
 }

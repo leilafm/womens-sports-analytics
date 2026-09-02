@@ -22,17 +22,15 @@ function TeamPage() {
     }, [id]);
 
     return (
-        <div>
-            <h2>
-                {team && (
-                    <div> 
-                        <h3> {team.city} {team.name} </h3>
-                    </div>
-                )}
-            </h2>
-
+        <main className="container">
+            {team && (
+                <div className="page-header">
+                    <h1>{team.city} {team.name}</h1>
+                </div>
+            )}
+    
             <Players />
-        </div>
+        </main>
     );
 }
 

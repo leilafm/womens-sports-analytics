@@ -19,14 +19,17 @@ function Players() {
         fetchPlayers();
     }, [id]);
     return (
-        <div>
-            Roster
-            {players.map((player) => (
-                    <p key={player.id}>
-                        {player.name}
-                    </p>
+        <section>
+            <h2>Roster</h2>
+
+            <div className="roster-grid">
+                {players.map((player) => (
+                    <div className="player-card" key={player.id}>
+                        <h3>{player.name}</h3>
+                    </div>
                 ))}
-        </div>
+            </div>
+        </section>
     );
 }
 
