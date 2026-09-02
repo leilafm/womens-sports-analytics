@@ -32,7 +32,8 @@ model Team {
 }
 
 model Player {
-  id       Int    @id @default(autoincrement())
+  id       Int      @id @default(autoincrement())
+  espnId   String   @unique
   name     String
 
   teamId   Int
