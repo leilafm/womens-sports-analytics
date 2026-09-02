@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
+import Players from "../components/Players";
+
 function TeamPage() {
     const { id } = useParams();
     const [team, setTeam] = useState(null);
@@ -28,6 +30,8 @@ function TeamPage() {
                     </div>
                 )}
             </h2>
+
+            <Players />
         </div>
     );
 }

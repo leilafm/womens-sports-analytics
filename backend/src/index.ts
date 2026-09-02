@@ -45,4 +45,16 @@ app.get("/api/teams/:id", async (req, res) => {
     });
 
     res.json(team);
-})
+});
+
+app.get("/api/teams/:id/players", async (req, res) => {
+    const id = Number(req.params.id);
+    const players = await prisma.player.findMany({
+        where: {
+            teamId: id,
+        },
+    });
+
+    res.json(players);
+});
+
