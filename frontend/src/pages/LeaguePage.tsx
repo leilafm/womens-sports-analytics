@@ -1,38 +1,61 @@
 import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { apiFetch } from "../api";
+import type { Team } from "../types";
+
+const leagueNames: Record<string, string> = {
+    wnba: "WNBA",
+    ncaaw: "NCAAW BB",
+    nwsl: "NWSL",
+    wsl: "WSL",
+};
 
 function LeaguePage() {
-    // Teams stored here on backend return
-    const [teams, setTeams] = useState([]);
+    const { league } = useParams();
+    const leagueName = league ? leagueNames[league] : undefined;
+    const [teams, setTeams] = useState<Team[]>([]);
 
     useEffect(() => {
         async function fetchTeams() {
-            const response = await fetch(
-                "http://localhost:3000/api/leagues/WNBA/teams"
-            );
-    
-            const data = await response.json();
-    
-            setTeams(data);
+            if (!leagueName) return;
+
+            try {
+                const data = await apiFetch<Team[]>(
+                    `/leagues/${encodeURIComponent(leagueName)}/teams`,
+                );
+                setTeams(data);
+            } catch (error) {
+                console.error(error);
+            }
         }
-    
+
         fetchTeams();
-    }, []);
+    }, [leagueName]);
+
+    if (!leagueName) {
+        return <main className="container"><h1>League not found</h1></main>;
+    }
 
     return (
-        <div> 
-            <h2> WNBA </h2>
+        <main className="container">
+            <div className="page-header">
+                <h1>{leagueName}</h1>
+            </div>
+
             <div className="team-grid">
                 {teams.map((team) => (
-                    <a
-                        href={`/teams/${team.id}`}
+                    <Link
+                        to={`/teams/${team.id}`}
                         className="team-card"
                         key={team.id}
                     >
-                        <h3>{team.city} {team.name}</h3>
-                    </a>
+                        <h3>
+                            {team.city ? `${team.city} ${team.name}` : team.name}
+                        </h3>
+                    </Link>
                 ))}
             </div>
-        </div>
+        </main>
     );
 }
 
