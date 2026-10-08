@@ -35,13 +35,18 @@ model Player {
   id       Int      @id @default(autoincrement())
   espnId   String   @unique
   name     String
+  position String?
+  jersey   String?
+  headshot String?
 
   teamId   Int
   team     Team   @relation(fields: [teamId], references: [id])
+  favoritePlayers FavoritePlayer[]
 }
 
 model Matchup {
   id Int @id @default(autoincrement())
+  espnId String @unique
 
   leagueId Int
   league   League @relation(fields: [leagueId], references: [id])
@@ -64,6 +69,8 @@ model User {
   name         String?
 
   favoriteTeams FavoriteTeam[]
+  favoritePlayers FavoritePlayer[]
+  sessions Session[]
 }
 
 model FavoriteTeam {
@@ -76,4 +83,24 @@ model FavoriteTeam {
   team   Team @relation(fields: [teamId], references: [id])
 
   @@unique([userId, teamId])
+}
+
+model FavoritePlayer {
+  id Int @id @default(autoincrement())
+
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+
+  playerId Int
+  player Player @relation(fields: [playerId], references: [id])
+
+  @@unique([userId, playerId])
+}
+
+model Session {
+  id Int @id @default(autoincrement())
+  token String @unique
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+  expiresAt DateTime
 }
