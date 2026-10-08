@@ -138,3 +138,138 @@ section h2 {
     transform: translateY(-4px);
     box-shadow: 0 8px 20px rgba(124, 58, 237, 0.2);
 }
+
+button {
+    background: #7c3aed;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #a855f7;
+}
+
+.team-content {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 60px;
+    align-items: start;
+}
+
+.matchup-column {
+    min-width: 0;
+}
+
+.matchup-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.matchup-card {
+    display: block;
+    background: #171020;
+    border: 1px solid #3b1d5c;
+    border-radius: 10px;
+    padding: 16px;
+}
+
+.matchup-card:hover {
+    border-color: #a855f7;
+}
+
+.matchup-card p {
+    margin: 0 0 8px;
+}
+
+.matchup-detail {
+    background: #171020;
+    border: 1px solid #3b1d5c;
+    border-radius: 14px;
+    padding: 30px;
+    max-width: 800px;
+}
+
+.matchup-teams {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.matchup-teams a {
+    color: #c084fc;
+    font-weight: bold;
+}
+
+.league-links {
+    margin-top: 50px;
+}
+
+.league-card {
+    display: inline-block;
+    margin-right: 12px;
+    padding: 14px 20px;
+    background: #171020;
+    border: 1px solid #3b1d5c;
+    border-radius: 10px;
+}
+
+.league-card:hover {
+    border-color: #a855f7;
+}
+
+.player-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.player-headshot {
+    width: 42px;
+    height: 42px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.player-card p {
+    margin: 4px 0 0;
+    font-size: 13px;
+    color: #a8a0b8;
+}
+
+.player-card button {
+    margin-left: auto;
+    padding: 4px 8px;
+}
+
+.auth-card {
+    max-width: 420px;
+    background: #171020;
+    border: 1px solid #3b1d5c;
+    border-radius: 14px;
+    padding: 28px;
+}
+
+.auth-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.auth-card input {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #3b1d5c;
+    background: #0b0710;
+    color: white;
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: #c084fc;
+}
